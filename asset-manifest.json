@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/msrweb/static/css/main.8c8b27cf.chunk.css",
-    "main.js": "/msrweb/static/js/main.c428150a.chunk.js",
-    "main.js.map": "/msrweb/static/js/main.c428150a.chunk.js.map",
+    "main.js": "/msrweb/static/js/main.a8b7a8bd.chunk.js",
+    "main.js.map": "/msrweb/static/js/main.a8b7a8bd.chunk.js.map",
     "runtime-main.js": "/msrweb/static/js/runtime-main.077269b5.js",
     "runtime-main.js.map": "/msrweb/static/js/runtime-main.077269b5.js.map",
     "static/js/2.ecd62251.chunk.js": "/msrweb/static/js/2.ecd62251.chunk.js",
@@ -11,13 +11,12 @@
     "static/js/3.a8112da6.chunk.js.map": "/msrweb/static/js/3.a8112da6.chunk.js.map",
     "index.html": "/msrweb/index.html",
     "static/css/main.8c8b27cf.chunk.css.map": "/msrweb/static/css/main.8c8b27cf.chunk.css.map",
-    "static/js/2.ecd62251.chunk.js.LICENSE.txt": "/msrweb/static/js/2.ecd62251.chunk.js.LICENSE.txt",
-    "static/media/logo.6ce24c58.svg": "/msrweb/static/media/logo.6ce24c58.svg"
+    "static/js/2.ecd62251.chunk.js.LICENSE.txt": "/msrweb/static/js/2.ecd62251.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.077269b5.js",
     "static/js/2.ecd62251.chunk.js",
     "static/css/main.8c8b27cf.chunk.css",
-    "static/js/main.c428150a.chunk.js"
+    "static/js/main.a8b7a8bd.chunk.js"
   ]
 }
