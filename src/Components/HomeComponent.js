@@ -31,7 +31,7 @@ class HomeComponent extends React.Component {
     return (
       <div>
         <p>Kevin</p>
-        <form className="contact-form" onSubmit={this.sendEmail}>
+        {/* <form className="contact-form" onSubmit={this.sendEmail}>
           <input type="hidden" name="id" value="123" />
           <input type="hidden" name="about" value="New Construction" />
           <label>Name</label>
@@ -41,7 +41,7 @@ class HomeComponent extends React.Component {
           <label>Message</label>
           <textarea name="message" />
           <input type="submit" value="Send" />
-        </form>
+        </form> */}
       </div>
     );
   }
