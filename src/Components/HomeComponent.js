@@ -1,6 +1,7 @@
 import React from "react";
 import emailjs from "emailjs-com";
 import NavBar from "./SharedComponents/NavBar";
+import BodyCardComponent from "./BodyCardComponents/BodyCardComponent";
 
 class HomeComponent extends React.Component {
   constructor(props) {
@@ -32,6 +33,7 @@ class HomeComponent extends React.Component {
     return (
       <div>
         <NavBar />
+        <BodyCardComponent />
       </div>
     );
   }

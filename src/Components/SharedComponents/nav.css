@@ -1,22 +1,173 @@
-#nav {
-  background-color: #234f66 !important;
-  height: 70px !important;
+.nav {
+  background-color: #234f66;
+  height: 300px;
 }
 
-.nav_text {
-  color: #d7e9fc !important;
+.avatar {
+  background-color: #234f66;
+  height: 250px;
+  width: 250px;
+  border-radius: 600px;
+  margin-top: 130px;
+  margin-left: 50px;
+  text-align: center;
+  justify-content: center;
+  display: inline;
+}
+
+.avatar-img {
+  width: 230px;
+  height: 230px;
+  display: inline-block;
+  margin-top: 5px;
+}
+
+.head-text-container {
+  margin-top: 200px;
+  color: white;
+  font-size: 55px;
+  margin-left: 20px;
+}
+
+body {
+  background-color: #d4cbbf;
+}
+
+.contact-wrapper {
+  /* background-color: red; */
+  /* width: 500px; */
+  height: 50px;
+  position: absolute;
+  top: 0px;
+  right: 10px;
+  display: flex;
+  flex-direction: row;
+}
+.email {
+  display: flex;
+  flex: 1;
+  /* background-color: green; */
+}
+.call {
+  display: flex;
+  flex: 1;
+  /* background-color: blue; */
+  margin-left: 10px;
+}
+.call > a {
+  text-decoration: none;
+  color: white;
   font-size: large;
-  /* justify-content: center !important; */
 }
-.nav_header {
-  color: #d7e9fc !important;
-}
-.nav_header > img {
-  margin-right: 10px;
+.email > a {
+  text-decoration: none;
+  color: white;
+  font-size: large;
+  margin-right: 20px;
 }
 
-.middle-text {
-  vertical-align: middle;
-  font-size: xx-large;
-  font-family: "Open Sans Condensed", sans-serif;
+/* On screens that are 992px or less, set the background color to blue */
+@media screen and (max-width: 992px) {
+  .nav {
+    background-color: #234f66;
+    height: 250px;
+  }
+
+  .avatar {
+    background-color: #234f66;
+    display: inline;
+
+    height: 200px;
+    width: 200px;
+    border-radius: 600px;
+    margin-top: 120px;
+    margin-left: 50px;
+    text-align: center;
+    justify-content: center;
+  }
+
+  .avatar-img {
+    width: 180px;
+    height: 180px;
+    display: inline-block;
+    margin-top: 5px;
+  }
+
+  .head-text-container {
+    margin-top: 180px;
+    color: white;
+    font-size: 45px;
+    margin-left: 20px;
+  }
+  body {
+    background-color: #d4cbbf;
+  }
+}
+
+/* On screens that are 600px or less, set the background color to olive */
+@media screen and (max-width: 600px) {
+  body {
+    background-color: #d4cbbf;
+  }
+  .nav {
+    background-color: #234f66;
+    height: 150px;
+  }
+  .head-text-container {
+    color: white;
+    font-size: 45px;
+    margin-top: 80px;
+  }
+  .head-text {
+    word-wrap: normal;
+    font-size: 23px;
+    font-weight: 700;
+  }
+
+  .avatar {
+    background-color: #234f66;
+    /* background-color: red; */
+    display: inline;
+
+    height: 140px;
+    width: 140px;
+    border-radius: 600px;
+    /* margin: 0px; */
+    margin-top: 50px;
+    text-align: center;
+    justify-content: center;
+    position: relative;
+    /* bottom: -20px; */
+    /* display: flex;
+    flex: 1; */
+    margin-left: 10px;
+  }
+  .avatar-img {
+    width: 120px;
+    height: 120px;
+    display: inline-block;
+    margin-top: 7px;
+    /* display: none; */
+  }
+
+  .contact-wrapper {
+    background-color: red;
+    /* width: 500px; */
+    height: 50px;
+    display: flex;
+    flex-direction: column;
+    display: none;
+  }
+  .email {
+    display: flex;
+    flex: 1;
+    /* background-color: green; */
+  }
+  .call {
+    display: flex;
+    flex: 1;
+    /* background-color: blue; */
+    margin-left: 10px;
+    text-align: right;
+  }
 }
