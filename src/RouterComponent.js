@@ -5,8 +5,8 @@ import HomeComponent from "./Components/HomeComponent";
 export default function Routes() {
   return (
     <Switch>
-      <Route exact path="/home" component={HomeComponent} />
-      <Route path="/home" component={HomeComponent} />
+      <Route exact path="/" component={HomeComponent} />
+      <Route path="/" component={HomeComponent} />
       {/* <Route exact path="/address" component={AddressSelect} />
       <Route
         path="/section/:sectionId"
@@ -27,7 +27,7 @@ export default function Routes() {
         }}
       /> */}
       {/* redirect user to SignIn page if route does not exist and user is not authenticated */}
-      <Redirect to={"/home"} />
+      <Redirect to={"/"} />
     </Switch>
   );
 }
