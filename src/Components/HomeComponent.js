@@ -1,5 +1,6 @@
 import React from "react";
 import emailjs from "emailjs-com";
+import NavBar from "./SharedComponents/NavBar";
 
 class HomeComponent extends React.Component {
   constructor(props) {
@@ -30,18 +31,7 @@ class HomeComponent extends React.Component {
   render() {
     return (
       <div>
-        <p>Kevin</p>
-        {/* <form className="contact-form" onSubmit={this.sendEmail}>
-          <input type="hidden" name="id" value="123" />
-          <input type="hidden" name="about" value="New Construction" />
-          <label>Name</label>
-          <input type="text" name="to_name" />
-          <label>Email</label>
-          <input type="email" name="to_email" />
-          <label>Message</label>
-          <textarea name="message" />
-          <input type="submit" value="Send" />
-        </form> */}
+        <NavBar />
       </div>
     );
   }

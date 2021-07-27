@@ -5,6 +5,7 @@ import HomeComponent from "./Components/HomeComponent";
 export default function Routes() {
   return (
     <Switch>
+      <Route exact path="/home" component={HomeComponent} />
       <Route path="/home" component={HomeComponent} />
       {/* <Route exact path="/address" component={AddressSelect} />
       <Route

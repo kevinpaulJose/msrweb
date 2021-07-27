@@ -1,0 +1,22 @@
+#nav {
+  background-color: #234f66 !important;
+  height: 70px !important;
+}
+
+.nav_text {
+  color: #d7e9fc !important;
+  font-size: large;
+  /* justify-content: center !important; */
+}
+.nav_header {
+  color: #d7e9fc !important;
+}
+.nav_header > img {
+  margin-right: 10px;
+}
+
+.middle-text {
+  vertical-align: middle;
+  font-size: xx-large;
+  font-family: "Open Sans Condensed", sans-serif;
+}
