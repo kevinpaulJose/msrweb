@@ -3,6 +3,11 @@
   margin-top: 100px;
 }
 
+.primary {
+  background-color: #234f66;
+  margin-top: 10px;
+}
+
 .card-outline {
   width: 350px;
   display: inline-block;
@@ -17,6 +22,11 @@
 
   border-radius: 20px;
 }
+
+.card:hover {
+  cursor: pointer;
+}
+
 .card-img {
   width: 350px !important;
   border-radius: 20px 20px 0 0 !important;
@@ -40,6 +50,18 @@
   border-bottom-right-radius: 20px;
   display: flex;
   flex-direction: row;
+}
+.map-card {
+  background-color: #fee3ce;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  display: flex;
+  flex-direction: row;
+}
+
+.map-card > div > img {
+  width: 50px;
+  height: 50px;
 }
 .interior-card > div > img {
   width: 50px;
