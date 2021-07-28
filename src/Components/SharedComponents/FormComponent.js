@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, Form } from "react-bootstrap";
+import { Button, Form, Toast } from "react-bootstrap";
 import emailjs from "emailjs-com";
 import { firestore } from "../../firebase/script";
 import axios from "axios";
@@ -28,6 +28,8 @@ class FormComponent extends React.Component {
     pincode: "",
     ind_state: "",
     end: false,
+    end_pin: false,
+    price: "",
   };
 
   validateEmail = ({ str }) => {
@@ -107,6 +109,19 @@ class FormComponent extends React.Component {
         }
       );
   };
+
+  async componentDidMount() {
+    const ref = firestore.collection("metadata").doc("w5O0vANoqoj7XjnZPx7f");
+    const doc = await ref.get();
+
+    if (!doc.exists) {
+      console.log("No such document!");
+    } else {
+      this.setState({
+        price: doc.data().price_sq_ft,
+      });
+    }
+  }
 
   handleForm = async () => {
     console.log("Initiated");
@@ -240,11 +255,11 @@ class FormComponent extends React.Component {
           }
         } else {
           this.setState({ end_pin: true, isLoading: false });
-          alert("This Pincode is currently not accessible");
+          alert("This Pincode is currently not Serviceable");
         }
       } else {
         this.setState({ end_pin: true, isLoading: false });
-        alert("This Pincode is currently not accessible");
+        alert("This Pincode is currently not Serviceable");
       }
     } else {
       let alert_info =
@@ -263,8 +278,40 @@ class FormComponent extends React.Component {
   render() {
     return (
       <div>
+        <div className="toast-center">
+          {this.state.price !== "" &&
+          (this.props.selected === "Residential Homes" ||
+            this.props.selected === "Apartments") ? (
+            <div>
+              <Toast className="d-inline-block m-1" bg="success">
+                <Toast.Body className="text-white">
+                  {"Rs." + this.state.price + "/- per sq.ft only"}
+                  <br></br>
+                  <small>{"(offer applicable for selected regions)"}</small>
+                </Toast.Body>
+              </Toast>
+              <Toast className="d-inline-block m-1" bg="light">
+                <Toast.Body className="text-dark">
+                  {
+                    "We take care of all the legal Paperworks and Plan Approvals!"
+                  }
+                </Toast.Body>
+              </Toast>
+              <Toast className="d-inline-block m-1" bg="light">
+                <Toast.Body className="text-dark">
+                  {"We provide Load approval Guidance and Support"}
+                </Toast.Body>
+              </Toast>
+            </div>
+          ) : (
+            <></>
+          )}
+        </div>
         <Form>
-          <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+          <Form.Group
+            className="mb-3 mt-4"
+            controlId="exampleForm.ControlInput1"
+          >
             <Form.Control
               onChange={(e) => this.setState({ to_name: e.target.value })}
               type="text"
@@ -360,6 +407,17 @@ class FormComponent extends React.Component {
             {this.state.isLoading ? "Please wait ..." : "Get Quote"}
           </Button>
         </Form>
+        <div className="toast-center">
+          {this.state.end && !this.state.end_pin ? (
+            <Toast className="d-inline-block m-1" bg="success">
+              <Toast.Body className="text-white">
+                We will get back to you as soon as possible!
+              </Toast.Body>
+            </Toast>
+          ) : (
+            <></>
+          )}
+        </div>
       </div>
     );
   }

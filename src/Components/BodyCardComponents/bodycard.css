@@ -13,6 +13,10 @@
   display: inline-block;
 }
 
+.toast-center {
+  text-align: center;
+  margin-top: 10px;
+}
 .card {
   width: 350px !important;
 
@@ -86,6 +90,7 @@
   border-bottom-right-radius: 20px; */
   display: flex;
   flex-direction: row;
+  border-bottom: solid #234f66 1px;
 }
 .residential-card-1 > div > img {
   width: 50px;
