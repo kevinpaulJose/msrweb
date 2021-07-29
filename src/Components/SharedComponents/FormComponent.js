@@ -291,6 +291,7 @@ class FormComponent extends React.Component {
                     this.setState({
                       isLoading: false,
                       end: true,
+                      end_pin: false,
                     });
                   });
               });
