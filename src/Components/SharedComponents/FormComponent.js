@@ -18,7 +18,7 @@ class FormComponent extends React.Component {
     district: "",
     comments: "",
     address: "",
-    address_error: "",
+    address_error: false,
     email_error: false,
     name_error: false,
     phone_error: false,
@@ -123,32 +123,59 @@ class FormComponent extends React.Component {
     }
   }
 
+  validateAll = () => {
+    let email_error = false;
+    let phone_error = false;
+    let name_error = false;
+    let address_error = false;
+    let pin_error = false;
+
+    if (this.validateEmail({ str: this.state.to_email })) {
+      this.setState({ email_error: false });
+    } else {
+      this.setState({ email_error: true });
+      email_error = true;
+    }
+
+    if (this.validatePhone({ phone: this.state.phone })) {
+      this.setState({ phone_error: false });
+    } else {
+      this.setState({ phone_error: true });
+      phone_error = true;
+    }
+
+    if (this.validateName({ name: this.state.to_name })) {
+      this.setState({ name_error: false });
+    } else {
+      this.setState({ name_error: true });
+      name_error = true;
+    }
+
+    if (this.validateAddress({ address: this.state.address })) {
+      this.setState({ address_error: false });
+    } else {
+      this.setState({ address_error: true });
+      address_error = true;
+    }
+    if (this.validatePin({ pin: this.state.pincode })) {
+      this.setState({ pin_error: false });
+      pin_error = true;
+    } else {
+      this.setState({ pin_error: true });
+    }
+
+    if (email_error || name_error || address_error || pin_error) {
+      return true;
+    }
+    return false;
+  };
+
   handleForm = async () => {
     console.log("Initiated");
     this.setState({ isLoading: true });
 
-    this.validateEmail({ str: this.state.to_email })
-      ? this.setState({ email_error: false })
-      : this.setState({ email_error: true });
-    this.validatePhone({ phone: this.state.phone })
-      ? this.setState({ phone_error: false })
-      : this.setState({ phone_error: true });
-    this.validateName({ name: this.state.to_name })
-      ? this.setState({ name_error: false })
-      : this.setState({ name_error: true });
-    this.validateAddress({ address: this.state.address })
-      ? this.setState({ address_error: false })
-      : this.setState({ address_error: true });
-    this.validatePin({ pin: this.state.pincode })
-      ? this.setState({ pin_error: false })
-      : this.setState({ pin_error: true });
-    if (
-      !this.state.email_error &&
-      !this.state.name_error &&
-      !this.state.phone_error &&
-      !this.state.address_error &&
-      !this.state.pin_error
-    ) {
+    if (!this.validateAll()) {
+      console.log(this.state);
       console.log("Came into api calls");
       var options = {
         method: "POST",
@@ -262,16 +289,6 @@ class FormComponent extends React.Component {
         alert("This Pincode is currently not Serviceable");
       }
     } else {
-      let alert_info =
-        "Please enter the correct Information for " +
-        (this.state.name_error ? ", Name" : "") +
-        (this.state.email_error ? ", Email" : "") +
-        (this.state.phone_error ? ", Phone" : "") +
-        (this.state.address_1_error ? ", Address Line 1" : "") +
-        (this.state.district_error ? ", District" : "") +
-        (this.state.pin_error ? ", Pincode" : "") +
-        (this.state.state_error ? ", State" : "");
-      alert(alert_info);
       this.setState({ isLoading: false });
     }
   };
