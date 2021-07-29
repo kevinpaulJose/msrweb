@@ -157,25 +157,40 @@ class FormComponent extends React.Component {
       this.setState({ address_error: true });
       address_error = true;
     }
-    if (this.validatePin({ pin: this.state.pincode })) {
-      this.setState({ pin_error: false });
-      pin_error = true;
-    } else {
-      this.setState({ pin_error: true });
+
+    if (!this.props.ignorePin) {
+      if (this.validatePin({ pin: this.state.pincode })) {
+        this.setState({ pin_error: false });
+      } else {
+        this.setState({ pin_error: true });
+        pin_error = true;
+      }
     }
 
-    if (email_error || name_error || address_error || pin_error) {
-      return true;
+    if (
+      email_error ||
+      name_error ||
+      address_error ||
+      pin_error ||
+      phone_error
+    ) {
+      console.log(email_error);
+      console.log(name_error);
+      console.log(address_error);
+      console.log(pin_error);
+      console.log(phone_error);
+      this.setState({ isLoading: false });
+      console.log("this occured");
+    } else {
+      this.handleForm();
     }
-    return false;
   };
 
   handleForm = async () => {
     console.log("Initiated");
     this.setState({ isLoading: true });
-
-    if (!this.validateAll()) {
-      console.log(this.state);
+    if (true) {
+      // console.log(this.state);
       console.log("Came into api calls");
       var options = {
         method: "POST",
@@ -186,7 +201,10 @@ class FormComponent extends React.Component {
             "270a5bcb65msh877d6ff7f5533c0p19a716jsna517e32edc05",
           "x-rapidapi-host": "pincode.p.rapidapi.com",
         },
-        data: { searchBy: "pincode", value: this.state.pincode },
+        data: {
+          searchBy: "pincode",
+          value: this.props.ignorePin ? "627011" : this.state.pincode,
+        },
       };
       const response = await axios.request(options);
       // console.log(response.data);
@@ -209,8 +227,7 @@ class FormComponent extends React.Component {
                 [id]: {
                   email: this.state.to_email,
                   about: this.props.selected,
-                  address:
-                    this.state.address + "\n" + " - " + this.state.pincode,
+                  address: this.state.address + "\n " + this.state.pincode,
                   message:
                     this.state.comments +
                     "\n" +
@@ -289,7 +306,14 @@ class FormComponent extends React.Component {
         alert("This Pincode is currently not Serviceable");
       }
     } else {
-      this.setState({ isLoading: false });
+      console.log(
+        this.state.email_error ||
+          this.state.name_error ||
+          this.state.address_error ||
+          this.state.pin_error ||
+          this.state.phone_error
+      );
+      console.log("ReachedHere");
     }
   };
   render() {
@@ -377,19 +401,22 @@ class FormComponent extends React.Component {
               disabled={this.state.isLoading}
             />
           </Form.Group>
-          <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-            <Form.Control
-              type="text"
-              name="pin"
-              placeholder="Pincode"
-              maxLength={6}
-              onChange={(e) => this.setState({ pincode: e.target.value })}
-              disabled={this.state.isLoading}
-            />
-            {this.state.pin_error && (
-              <span style={{ color: "red" }}>Invalid Pincode</span>
-            )}
-          </Form.Group>
+          {!this.props.ignorePin && (
+            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+              <Form.Control
+                type="text"
+                name="pin"
+                placeholder="Pincode"
+                maxLength={6}
+                onChange={(e) => this.setState({ pincode: e.target.value })}
+                disabled={this.state.isLoading}
+              />
+              {this.state.pin_error && (
+                <span style={{ color: "red" }}>Invalid Pincode</span>
+              )}
+            </Form.Group>
+          )}
+
           <Form.Group
             className="mb-3"
             name="Additional Comments"
@@ -419,7 +446,7 @@ class FormComponent extends React.Component {
           <Button
             disabled={this.state.isLoading}
             className="primary"
-            onClick={this.handleForm}
+            onClick={this.validateAll}
           >
             {this.state.isLoading ? "Please wait ..." : "Get Quote"}
           </Button>

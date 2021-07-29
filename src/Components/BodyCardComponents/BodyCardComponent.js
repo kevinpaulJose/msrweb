@@ -1,5 +1,5 @@
 import React from "react";
-import { Card, Col, Container, Row, Button, Modal } from "react-bootstrap";
+import { Card, Col, Container, Row, Modal } from "react-bootstrap";
 import "./bodycard.css";
 import residenceImg from "../../assets/resources/residential_background.jpg";
 import interiorImg from "../../assets/resources/interioi_background.png";
