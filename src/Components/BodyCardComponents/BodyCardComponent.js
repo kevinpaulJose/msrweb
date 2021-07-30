@@ -24,7 +24,7 @@ class BodyCardComponent extends React.Component {
     return (
       <Container>
         <Row className="card-body-custom">
-          <Col className="col">
+          <Col className="col col-cus">
             <div className="card-outline">
               <Card className="card">
                 <div className="card-head-text">Build a new Home?</div>
@@ -59,7 +59,7 @@ class BodyCardComponent extends React.Component {
               </Card>
             </div>
           </Col>
-          <Col className="col col2">
+          <Col className="col col-cus col2">
             <div className="card-outline">
               <Card
                 className="card"
@@ -89,7 +89,7 @@ class BodyCardComponent extends React.Component {
             </div>
           </Col>
 
-          <Col className="col col2">
+          <Col className="col col-cus col2 col3">
             <div className="card-outline">
               <Card className="card">
                 <div className="card-head-text">Find us here!</div>

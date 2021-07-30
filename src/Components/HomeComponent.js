@@ -4,6 +4,7 @@ import NavBar from "./SharedComponents/NavBar";
 import BodyCardComponent from "./BodyCardComponents/BodyCardComponent";
 import FooterComponent from "./SharedComponents/FooterComponent";
 import GalleryComponent from "./GalleryComponents/GalleryComponent";
+import AboutUsComponent from "./AboutusComponents/AboutusComponent";
 
 class HomeComponent extends React.Component {
   constructor(props) {
@@ -36,6 +37,7 @@ class HomeComponent extends React.Component {
       <div>
         <NavBar />
         <BodyCardComponent />
+        <AboutUsComponent />
         <GalleryComponent />
         <FooterComponent />
       </div>

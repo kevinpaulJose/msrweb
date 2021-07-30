@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { storageRef } from "../../firebase/script";
 import FormComponent from "../SharedComponents/FormComponent";
 import ImageComponent from "../SharedComponents/ImageComponent";
+import "./styles.css";
 
 class GalleryPageComponent extends React.Component {
   state = {
@@ -71,10 +72,16 @@ class GalleryPageComponent extends React.Component {
             </h1>
             {this.props.location.state.form && (
               <div
-                className="book-now"
+                style={{
+                  marginTop: 15,
+                  marginBottom: 15,
+                  display: "inline-block",
+                  marginLeft: 15,
+                  cursor: "pointer",
+                }}
                 onClick={() => this.toggleModal({ selected: "Home Booking" })}
               >
-                Book Now
+                <span className="book-now">Book Now</span>
               </div>
             )}
             <hr className="mt-2 mb-5" />

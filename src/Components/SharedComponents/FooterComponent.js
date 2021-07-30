@@ -1,6 +1,14 @@
 import React from "react";
 import { Col, Row } from "react-bootstrap";
+import { Link } from "react-router-dom";
+import { theme } from "../../theme";
 import "./footer.css";
+import {
+  IoLogoFacebook,
+  IoLogoInstagram,
+  IoLogoYoutube,
+  IoLogoWhatsapp,
+} from "react-icons/io";
 
 export default function FooterComponent() {
   return (
@@ -10,18 +18,22 @@ export default function FooterComponent() {
           <Col>
             <div>
               <Row>
-                <Col>
+                <Col className="col-footer">
                   <span className="footer-header">Contact Us</span>
                 </Col>
                 <Row className="mt-2">
-                  <Col>
-                    <span className="footer-body">Email us</span>
-                  </Col>
+                  <a href="mailto:msrconstruction.co.in">
+                    <Col className="footer-links">
+                      <span className="footer-body">Email us</span>
+                    </Col>
+                  </a>
                 </Row>
                 <Row>
-                  <Col>
-                    <span className="footer-body">Call uss</span>
-                  </Col>
+                  <a href={theme.url.phone}>
+                    <Col className="footer-links">
+                      <span className="footer-body">Call us</span>
+                    </Col>
+                  </a>
                 </Row>
               </Row>
             </div>
@@ -29,10 +41,34 @@ export default function FooterComponent() {
           <Col>
             <div>
               <Row>
-                <Col>
+                <Col className="col-footer">
                   <span className="footer-header">
                     Follow us on Social Media
                   </span>
+                </Col>
+              </Row>
+              <Row>
+                <Col>
+                  <a className="href-blank-fb" href={theme.url.facebook}>
+                    <div className="inline-block">
+                      <IoLogoFacebook size={30} />
+                    </div>
+                  </a>
+                  <a className="href-blank-insta" href={theme.url.instagram}>
+                    <div className="inline-block">
+                      <IoLogoInstagram size={30} />
+                    </div>
+                  </a>
+                  <a className="href-blank-youtube" href={theme.url.youtube}>
+                    <div className="inline-block">
+                      <IoLogoYoutube size={30} />
+                    </div>
+                  </a>
+                  <a className="href-blank-wp" href={theme.url.whatsapp}>
+                    <div className="inline-block">
+                      <IoLogoWhatsapp size={30} />
+                    </div>
+                  </a>
                 </Col>
               </Row>
             </div>

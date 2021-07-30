@@ -15,7 +15,7 @@ const NavBar = () => {
         <div className="contact-wrapper">
           <div className="email">
             <a href="mailto:msrconstruction.co.in@gmail.com">
-              msrconstruction.co.in@gmail.com
+              <span>msrconstruction.co.in@gmail.com</span>
             </a>
           </div>
           <div className="call">
