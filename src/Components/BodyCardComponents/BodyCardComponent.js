@@ -9,6 +9,7 @@ import nonresidenceLogo from "../../assets/icons/non_residence_icon.png";
 import findUsImg from "../../assets/img/findus.jpg";
 import mapLogo from "../../assets/icons/map.png";
 import FormComponent from "../SharedComponents/FormComponent";
+import { theme } from "../../theme";
 
 class BodyCardComponent extends React.Component {
   state = {
@@ -91,20 +92,22 @@ class BodyCardComponent extends React.Component {
 
           <Col className="col col-cus col2 col3">
             <div className="card-outline">
-              <Card className="card">
-                <div className="card-head-text">Find us here!</div>
-                <Card.Img
-                  className="card-img card-img-1"
-                  variant="top"
-                  src={findUsImg}
-                />
-                <Card.Body className="map-card">
-                  <div>
-                    <img src={mapLogo} alt="Map logo" />
-                  </div>
-                  <div className="card-selection">Navigate</div>
-                </Card.Body>
-              </Card>
+              <a href={theme.url.location}>
+                <Card className="card">
+                  <div className="card-head-text">Find us here!</div>
+                  <Card.Img
+                    className="card-img card-img-1"
+                    variant="top"
+                    src={findUsImg}
+                  />
+                  <Card.Body className="map-card">
+                    <div>
+                      <img src={mapLogo} alt="Map logo" />
+                    </div>
+                    <div className="card-selection">Navigate</div>
+                  </Card.Body>
+                </Card>
+              </a>
             </div>
           </Col>
         </Row>

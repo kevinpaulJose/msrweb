@@ -322,8 +322,7 @@ class FormComponent extends React.Component {
       <div>
         <div className="toast-center">
           {this.state.price !== "" &&
-          (this.props.selected === "Residential Homes" ||
-            this.props.selected === "Apartments") ? (
+          this.props.selected === "Residential Homes" ? (
             <div>
               <Toast className="d-inline-block m-1" bg="success">
                 <Toast.Body className="text-white">

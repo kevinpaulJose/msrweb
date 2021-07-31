@@ -16,7 +16,7 @@ export default function AboutUsComponent() {
       <div className="float-left">
         <p>
           <strong>MSR Construction</strong> is a <strong>Tirunelveli </strong>
-          based builders since 1997. We have built a trust over the years among
+          based builders since 2010. We have built a trust over the years among
           our customers by our innovative and safest construction work. We
           delight in the satisfaction of our customers by meeting their needs
           and expectations. Our projects are all built with the modern designs,

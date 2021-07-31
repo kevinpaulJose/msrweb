@@ -11,7 +11,11 @@ const NavBar = () => {
         </div>
         <div className="head-text-container">
           <span className="head-text">MSR Construction</span>
+          <div className="head-body-container">
+            <span className="head-body">We Build your Dreams!</span>
+          </div>
         </div>
+
         <div className="contact-wrapper">
           <div className="email">
             <a href="mailto:msrconstruction.co.in@gmail.com">

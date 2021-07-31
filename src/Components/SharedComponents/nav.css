@@ -23,10 +23,18 @@
 }
 
 .head-text-container {
-  margin-top: 200px;
+  margin-top: 180px;
   color: white;
   font-size: 55px;
   margin-left: 20px;
+  font-family: "Times New Roman", Times, serif;
+}
+.head-body-container {
+  margin-top: -20px;
+  color: white;
+  font-size: 30px;
+  /* margin-left: 20px; */
+  font-family: "Times New Roman", Times, serif;
 }
 
 body {
@@ -94,10 +102,11 @@ body {
   }
 
   .head-text-container {
-    margin-top: 180px;
+    margin-top: 150px;
     color: white;
     font-size: 45px;
     margin-left: 20px;
+    font-family: "Times New Roman", Times, serif;
   }
   body {
     background-color: #d4cbbf;
@@ -116,14 +125,22 @@ body {
   .head-text-container {
     color: white;
     font-size: 45px;
-    margin-top: 80px;
+    margin-top: 60px;
+    font-family: "Times New Roman", Times, serif;
+  }
+  .head-body-container {
+    margin-top: -10px;
+    color: white;
+    font-size: 15px;
+    /* margin-left: 20px; */
+    font-family: "Times New Roman", Times, serif;
+    /* display: none; */
   }
   .head-text {
     word-wrap: normal;
     font-size: 23px;
     font-weight: 700;
   }
-
   .avatar {
     background-color: #234f66;
     /* background-color: red; */

@@ -45,5 +45,6 @@ export const theme = {
       "https://www.youtube.com/channel/UCTzligOnyw0WNCJH01tZBiQ/featured",
     whatsapp: "https://wa.me/%2B919487854458",
     phone: "tel:9487854458",
+    location: "https://goo.gl/maps/y86sNQiwxSnpQ2dK8",
   },
 };
