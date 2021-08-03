@@ -1,0 +1,15 @@
+.appInstall {
+  display: none;
+}
+
+@media screen and (max-width: 600px) {
+  .appInstall {
+    display: block;
+  }
+  .install-text {
+    margin-left: 5px;
+    color: #234f66;
+    font-weight: bold;
+    font-size: 15px;
+  }
+}

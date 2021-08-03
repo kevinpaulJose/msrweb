@@ -5,6 +5,7 @@ import BodyCardComponent from "./BodyCardComponents/BodyCardComponent";
 import FooterComponent from "./SharedComponents/FooterComponent";
 import GalleryComponent from "./GalleryComponents/GalleryComponent";
 import AboutUsComponent from "./AboutusComponents/AboutusComponent";
+import AppInstallComponent from "./SharedComponents/AppInstallComponent";
 
 class HomeComponent extends React.Component {
   constructor(props) {
@@ -35,6 +36,7 @@ class HomeComponent extends React.Component {
   render() {
     return (
       <div>
+        <AppInstallComponent />
         <NavBar />
         <BodyCardComponent />
         <AboutUsComponent />
