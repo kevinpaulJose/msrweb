@@ -3,6 +3,9 @@ import { Button, Form, Toast } from "react-bootstrap";
 import emailjs from "emailjs-com";
 import { firestore } from "../../firebase/script";
 import axios from "axios";
+import SabpaisaPaymentGateway from "../../SabpaisaPaymentGateway";
+import { Link } from "react-router-dom";
+import { theme } from "../../theme";
 
 class FormComponent extends React.Component {
   state = {
@@ -30,6 +33,9 @@ class FormComponent extends React.Component {
     end: false,
     end_pin: false,
     price: "",
+    checked3D: false,
+    isOpen: false,
+    validated: false
   };
 
   validateEmail = ({ str }) => {
@@ -189,140 +195,149 @@ class FormComponent extends React.Component {
   handleForm = async () => {
     console.log("Initiated");
     this.setState({ isLoading: true });
-    if (true) {
-      // console.log(this.state);
-      console.log("Came into api calls");
-      var options = {
-        method: "POST",
-        url: "https://pincode.p.rapidapi.com/",
-        headers: {
-          "content-type": "application/json",
-          "x-rapidapi-key":
-            "270a5bcb65msh877d6ff7f5533c0p19a716jsna517e32edc05",
-          "x-rapidapi-host": "pincode.p.rapidapi.com",
-        },
-        data: {
-          searchBy: "pincode",
-          value: this.props.ignorePin ? "627011" : this.state.pincode,
-        },
-      };
-      const response = await axios.request(options);
-      // console.log(response.data);
-      console.log("Axios Success - ");
-      if (response.data.length >= 1) {
-        if (response.data[0].state_id === 31) {
-          const ref = firestore
-            .collection("metadata")
-            .doc("w5O0vANoqoj7XjnZPx7f");
-          const doc = await ref.get();
-          if (!doc.exists) {
-            alert("Please try after some time");
-            this.setState({ isLoading: false });
-          } else {
-            let id = parseInt(doc.data().last_id) + 1;
-            this.setState({ id: id });
-            const queryRef = firestore.collection("metadata").doc("queries");
-            queryRef
-              .update({
-                [id]: {
-                  email: this.state.to_email,
-                  about: this.props.selected,
-                  address: this.state.address + "\n " + this.state.pincode,
-                  message:
-                    this.state.comments +
-                    "\n" +
-                    "-------------" +
-                    (this.state.checked
-                      ? "Land Available with the customer"
-                      : "Land Not Available with the customer"),
-                  land: this.state.checked ? "Yes" : "No",
-                  phone: this.state.phone,
-                },
-              })
-              .then(() => {
-                ref
-                  .update({
-                    last_id: id,
-                  })
-                  .then(() => {
-                    let templateParam = {
-                      service_id: "msr_construction",
-                      template_id: "msr_self",
-                      user_id: "user_Fshle7lhIGd5UAZiXexYL",
-                      id: this.state.id,
-                      about: this.props.selected,
-                      to_name: this.state.to_name,
-                      to_email: "rmrbking@gmail.com",
-                      message:
-                        this.state.comments +
-                        "\n" +
-                        "-------------" +
-                        (this.state.checked
-                          ? "Land Available with the customer"
-                          : "Land Not Available with the customer"),
-                      accessToken: "7717287bb3920229e72ce310ae21e85c",
-                      address:
-                        this.state.address + "\n - " + this.state.pincode,
-                      phone: this.state.phone,
-                    };
+    // if (true) {
+    // console.log(this.state);
+    console.log("Came into api calls");
+    // var options = {
+    //   method: "POST",
+    //   url: "https://pincode.p.rapidapi.com/",
+    //   headers: {
+    //     "content-type": "application/json",
+    //     "x-rapidapi-key":
+    //       "270a5bcb65msh877d6ff7f5533c0p19a716jsna517e32edc05",
+    //     "x-rapidapi-host": "pincode.p.rapidapi.com",
+    //   },
+    //   data: {
+    //     searchBy: "pincode",
+    //     value: this.props.ignorePin ? "627011" : this.state.pincode,
+    //   },
+    // };
+    // const response = await axios.request(options);
+    // console.log(response.data);
+    console.log("Axios Success - ");
+    // if (response.data.length >= 1) {
+    // if (response.data[0].state_id === 31) {
+    // const ref = firestore
+    //   .collection("metadata")
+    //   .doc("w5O0vANoqoj7XjnZPx7f");
+    // const doc = await ref.get();
+    // if (!doc.exists) {
+    //   alert("Please try after some time");
+    //   this.setState({ isLoading: false });
+    // } else {
+    //   let id = parseInt(doc.data().last_id) + 1;
+    //   this.setState({ id: id });
+    //   const queryRef = firestore.collection("metadata").doc("queries");
+    //   queryRef
+    //     .update({
+    //       [id]: {
+    //         email: this.state.to_email,
+    //         about: this.props.selected,
+    //         address: this.state.address + "\n " + this.state.pincode,
+    //         message:
+    //           this.state.comments +
+    //           "\n" +
+    //           "-------------" +
+    //           (this.state.checked
+    //             ? "Land Available with the customer"
+    //             : "Land Not Available with the customer"),
+    //         land: this.state.checked ? "Yes" : "No",
+    //         phone: this.state.phone,
+    //       },
+    //     })
+    //     .then(() => {
+    //       ref
+    //         .update({
+    //           last_id: id,
+    //         })
+    //         .then(() => {
+    //           let templateParam = {
+    //             service_id: "msr_construction",
+    //             template_id: "msr_self",
+    //             user_id: "user_Fshle7lhIGd5UAZiXexYL",
+    //             id: this.state.id,
+    //             about: this.props.selected,
+    //             to_name: this.state.to_name,
+    //             to_email: "rmrbking@gmail.com",
+    //             message:
+    //               this.state.comments +
+    //               "\n" +
+    //               "-------------" +
+    //               (this.state.checked
+    //                 ? "Land Available with the customer"
+    //                 : "Land Not Available with the customer"),
+    //             accessToken: "7717287bb3920229e72ce310ae21e85c",
+    //             address:
+    //               this.state.address + "\n - " + this.state.pincode,
+    //             phone: this.state.phone,
+    //           };
 
-                    let templateParamClient = {
-                      service_id: "msr_construction",
-                      template_id: "msr_construction_form",
-                      user_id: "user_Fshle7lhIGd5UAZiXexYL",
-                      id: this.state.id,
-                      about: this.props.selected,
-                      to_name: this.state.to_name,
-                      to_email: this.state.to_email,
-                      message:
-                        this.state.comments +
-                        "\n" +
-                        "-------------" +
-                        (this.state.checked
-                          ? "Land Available with the customer"
-                          : "Land Not Available with the customer"),
-                      accessToken: "7717287bb3920229e72ce310ae21e85c",
-                      address:
-                        this.state.address + "\n - " + this.state.pincode,
-                      phone: this.state.phone,
-                    };
-                    this.sendSelf({ templateParam: templateParam });
-                    this.sendClient({ templateParam: templateParamClient });
-                    this.setState({
-                      isLoading: false,
-                      end: true,
-                      end_pin: false,
-                    });
-                  });
-              });
+    //           let templateParamClient = {
+    //             service_id: "msr_construction",
+    //             template_id: "msr_construction_form",
+    //             user_id: "user_Fshle7lhIGd5UAZiXexYL",
+    //             id: this.state.id,
+    //             about: this.props.selected,
+    //             to_name: this.state.to_name,
+    //             to_email: this.state.to_email,
+    //             message:
+    //               this.state.comments +
+    //               "\n" +
+    //               "-------------" +
+    //               (this.state.checked
+    //                 ? "Land Available with the customer"
+    //                 : "Land Not Available with the customer"),
+    //             accessToken: "7717287bb3920229e72ce310ae21e85c",
+    //             address:
+    //               this.state.address + "\n - " + this.state.pincode,
+    //             phone: this.state.phone,
+    //           };
+    //           this.sendSelf({ templateParam: templateParam });
+    //           this.sendClient({ templateParam: templateParamClient });
+    //           this.setState({
+    //             isLoading: false,
+    //             end: true,
+    //             end_pin: false,
+    //             isOpen: true
+    //           });
+    //         });
+    //     });
+    //FOR TESTING
+    this.setState({
+      isLoading: false,
+      end: true,
+      end_pin: false,
+      isOpen: true,
+      validated: true
+    });
 
-            // console.log(formData);
-          }
-        } else {
-          this.setState({ end_pin: true, isLoading: false });
-          alert("This Pincode is currently not Serviceable");
-        }
-      } else {
-        this.setState({ end_pin: true, isLoading: false });
-        alert("This Pincode is currently not Serviceable");
-      }
-    } else {
-      console.log(
-        this.state.email_error ||
-          this.state.name_error ||
-          this.state.address_error ||
-          this.state.pin_error ||
-          this.state.phone_error
-      );
-      console.log("ReachedHere");
-    }
+    // console.log(formData);
+    // }
+    // } else {
+    //   this.setState({ end_pin: true, isLoading: false });
+    //   alert("This Pincode is currently not Serviceable");
+    // }
+    // } else {
+    //   this.setState({ end_pin: true, isLoading: false });
+    //   alert("This Pincode is currently not Serviceable");
+    // }
+    // } else {
+    //   console.log(
+    //     this.state.email_error ||
+    //     this.state.name_error ||
+    //     this.state.address_error ||
+    //     this.state.pin_error ||
+    //     this.state.phone_error
+    //   );
+    //   console.log("ReachedHere");
+    // }
   };
   render() {
     return (
       <div>
         <div className="toast-center">
           {this.state.price !== "" &&
-          this.props.selected === "Residential Homes" ? (
+            this.props.selected === "Residential Homes" ? (
             <div>
               <Toast className="d-inline-block m-1" bg="success">
                 <Toast.Body className="text-white">
@@ -353,6 +368,7 @@ class FormComponent extends React.Component {
             className="mb-3 mt-4"
             controlId="exampleForm.ControlInput1"
           >
+            <div id='renderSabPaisa'></div>
             <Form.Control
               onChange={(e) => this.setState({ to_name: e.target.value })}
               type="text"
@@ -422,6 +438,7 @@ class FormComponent extends React.Component {
             name="Additional Comments"
             controlId="exampleForm.ControlTextarea1"
           >
+
             <Form.Control
               onChange={(e) => this.setState({ comments: e.target.value })}
               placeholder="Additional Comments"
@@ -431,25 +448,67 @@ class FormComponent extends React.Component {
             />
           </Form.Group>
           {this.props.selected === "Residential Homes" ||
-          this.props.selected === "Apartments" ? (
-            <Form.Check
-              checked={this.state.checked}
-              type="checkbox"
-              label="I have a Land to Start with!"
-              onChange={() => this.setState({ checked: !this.state.checked })}
-              disabled={this.state.isLoading}
-            />
+            this.props.selected === "Apartments" ? (
+            <>
+              <Form.Check
+                checked={this.state.checked}
+                type="checkbox"
+                label="I have a Land to Start with!"
+                onChange={() => this.setState({ checked3D: !this.state.checked })}
+                disabled={this.state.isLoading}
+              />
+            </>
+
+
           ) : (
             <></>
           )}
+          {this.props.selected === "Interior Designing & Renovations" || this.props.selected === "Residential Homes" ||
+            this.props.selected === "Apartments" ? <>
+            <Form.Check
+              checked={this.state.checked3D}
+              type="checkbox"
+              label="Order 3D Model"
+              onChange={() => this.setState({ checked3D: !this.state.checked3D })}
+              disabled={this.state.isLoading}
+            />
+            <div>
+              <b>Total: {!this.state.checked3D ? "₹500" : "₹1200"}</b>
+              {this.state.checked3D && <span style={{ marginLeft: 10, fontSize: 12, color: "grey" }}>*includes ₹700 for 3D design</span>}
+            </div>
+          </>
+            : <></>
+          }
 
+         
+          {this.state.validated ? <>
+            <div style={{height: 20, width: 10}} />
+           <Link style={{textDecoration: "none", 
+          backgroundColor: theme.logo_color_dark, padding: 10,
+           borderRadius: 5, color: "white"}} to={{
+            pathname: '/pay',
+            state: {
+              to_name: this.state.to_name,
+              address: this.state.address,
+              phone: this.state.phone,
+              amount: this.state.checked3D ? "1200" : "500",
+              to_email: this.state.to_email
+            }
+          }}>
+            {this.state.isLoading ? "Please wait ..." : "Proceed to Pay"}
+          </Link>
+          </>
+          :
           <Button
             disabled={this.state.isLoading}
             className="primary"
             onClick={this.validateAll}
           >
-            {this.state.isLoading ? "Please wait ..." : "Get Quote"}
+          
+              Book Consultation
+
           </Button>
+          }
         </Form>
         <div className="toast-center">
           {this.state.end && !this.state.end_pin ? (
@@ -462,6 +521,23 @@ class FormComponent extends React.Component {
             <></>
           )}
         </div>
+        {/* <Link to={`/pay`} state={
+          {
+            to_name: this.state.to_name,
+            address: this.state.address,
+            phone: this.state.phone,
+            amount: this.state.checked3D ? "1200" : "500",
+            email: this.state.to_email
+          }
+        }>
+          Proceed to Pay
+        </Link> */}
+
+        {/* <SabpaisaPaymentGateway name={this.state.to_name} address={this.state.address} 
+        phone={this.state.phone} amount={this.state.checked3D ? "1200" : "500"}   isOpen={true}
+          email={this.state.to_email}
+        />   */}
+
       </div>
     );
   }

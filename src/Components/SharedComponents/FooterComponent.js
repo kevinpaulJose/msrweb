@@ -15,7 +15,7 @@ export default function FooterComponent() {
     <div className="footer">
       <div>
         <Row>
-          <Col>
+          {/* <Col>
             <div>
               <Row>
                 <Col className="col-footer">
@@ -36,9 +36,52 @@ export default function FooterComponent() {
                   </a>
                 </Row>
               </Row>
+              
             </div>
-          </Col>
+          </Col> */}
           <Col>
+            {/* <div> */}
+            <Row>
+              <Col className="col-footer">
+                <span className="footer-header">Usefull Links</span>
+              </Col>
+              <Row className="mt-2">
+                <Link to={'/contactUs'}>
+                  <Col className="footer-links">
+                    <span className="footer-body">Contact Us / Address</span>
+                  </Col>
+                </Link>
+
+
+              </Row>
+              <Row className="mt-2">
+                <Link to={'/terms'}>
+                  <Col className="footer-links">
+                    <span className="footer-body">Terms amd Conditions</span>
+                  </Col>
+                </Link>
+
+
+              </Row>
+              <Row>
+                <Link to={`/policy`}>
+                  <Col className="footer-links">
+                    <span className="footer-body">Privacy Policy</span>
+                  </Col>
+                  </Link>
+              </Row>
+              <Row>
+                <Link to={`/refundPolicy`}>
+                  <Col className="footer-links">
+                    <span className="footer-body">Cancellation and Refund Policy</span>
+                  </Col>
+                </Link>
+              </Row>
+            </Row>
+
+            {/* </div> */}
+          </Col>
+          {/* <Col>
             <div>
               <Row>
                 <Col className="col-footer">
@@ -49,11 +92,6 @@ export default function FooterComponent() {
               </Row>
               <Row>
                 <Col>
-                  <a className="href-blank-fb" href={theme.url.facebook}>
-                    <div className="inline-block">
-                      <IoLogoFacebook size={30} />
-                    </div>
-                  </a>
                   <a className="href-blank-insta" href={theme.url.instagram}>
                     <div className="inline-block">
                       <IoLogoInstagram size={30} />
@@ -72,7 +110,7 @@ export default function FooterComponent() {
                 </Col>
               </Row>
             </div>
-          </Col>
+          </Col> */}
         </Row>
       </div>
     </div>

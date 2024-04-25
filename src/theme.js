@@ -43,8 +43,8 @@ export const theme = {
     instagram: "https://www.instagram.com/msr.construction/",
     youtube:
       "https://www.youtube.com/channel/UCTzligOnyw0WNCJH01tZBiQ/featured",
-    whatsapp: "https://wa.me/%2B919487854458",
-    phone: "tel:9487854458",
+    whatsapp: "https://wa.me/%2B917904426625",
+    phone: "tel:7904426625",
     location: "https://goo.gl/maps/y86sNQiwxSnpQ2dK8",
   },
 };

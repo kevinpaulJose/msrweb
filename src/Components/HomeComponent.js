@@ -36,7 +36,7 @@ class HomeComponent extends React.Component {
   render() {
     return (
       <div>
-        <AppInstallComponent />
+        {/* <AppInstallComponent /> */}
         <NavBar />
         <BodyCardComponent />
         <AboutUsComponent />
