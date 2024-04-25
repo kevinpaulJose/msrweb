@@ -57,7 +57,7 @@ export default function FooterComponent() {
               <Row className="mt-2">
                 <Link to={'/terms'}>
                   <Col className="footer-links">
-                    <span className="footer-body">Terms amd Conditions</span>
+                    <span className="footer-body">Terms and Conditions</span>
                   </Col>
                 </Link>
 
